@@ -525,6 +525,7 @@ public class StowRS {
     private void stow(List<String> files) throws Exception {
         URL newUrl = new URL(url);
         final HttpURLConnection connection = (HttpURLConnection) newUrl.openConnection();
+        connection.setChunkedStreamingMode(1024*1024);
         connection.setDoOutput(true);
         connection.setDoInput(true);
         connection.setRequestMethod("POST");
