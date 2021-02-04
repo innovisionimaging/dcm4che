@@ -50,6 +50,7 @@ import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.ws.rs.core.MediaType;
 import javax.xml.transform.stream.StreamResult;
+import java.io.EOFException;
 
 import org.apache.commons.cli.*;
 import org.dcm4che3.data.VR;
@@ -541,6 +542,8 @@ public class StowRS {
             // logIncoming(connection);
             connection.disconnect();
             LOG.info("STOW successful!");
+        } catch (EOFException e) {
+            /// this is fine
         } catch (Exception e) {
             LOG.error("Exception : " + e.getMessage());
         }

@@ -46,6 +46,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.io.EOFException;
 
 import org.dcm4che3.data.Tag;
 import org.dcm4che3.data.UID;
@@ -562,6 +563,8 @@ public class Association {
                         decoder.nextPDU();
                 } catch (AAbort aa) {
                     abort(aa);
+                } catch (EOFException e) {
+                    // this is fine
                 } catch (IOException e) {
                     onIOException(e);
                 } catch (Exception e) {
