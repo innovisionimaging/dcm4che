@@ -190,7 +190,7 @@ public class StowRS {
             List<String> files = cl.getArgList();
             StowRS stowRS = new StowRS();
             stowRS.doNecessaryChecks(cl, files);
-            LOG.info("Storing objects.");
+            // LOG.info("Storing objects.");
             stowRS.stow(files);
         } catch (ParseException e) {
             System.err.println("stowrs: " + e.getMessage());
@@ -532,13 +532,13 @@ public class StowRS {
         connection.setRequestProperty("Content-Type",
                 "multipart/related; type=\"" + requestContentType + "\"; boundary=" + boundary);
         connection.setRequestProperty("Accept", requestAccept);
-        logOutgoing(connection);
+        // logOutgoing(connection);
         authorize(connection);
         try (OutputStream out = connection.getOutputStream()) {
             writeData(files, out);
             out.write(("\r\n--" + boundary + "--\r\n").getBytes());
             out.flush();
-            logIncoming(connection);
+            // logIncoming(connection);
             connection.disconnect();
             LOG.info("STOW successful!");
         } catch (Exception e) {
