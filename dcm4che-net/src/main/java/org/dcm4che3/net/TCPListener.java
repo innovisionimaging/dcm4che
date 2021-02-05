@@ -121,7 +121,7 @@ class TCPListener implements Listener {
 
                     if (monitor != null)
                         monitor.onConnectionAccepted(conn, s);
-                    Connection.LOG.info("Accept connection {}", s);
+                    // Connection.LOG.info("Accept connection {}", s);
                     try {
                         handler.onAccept(conn, s);
                     } catch (Throwable e) {
